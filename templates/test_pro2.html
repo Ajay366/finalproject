@@ -1,0 +1,116 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>PaddyCare</title>
+</head>
+
+<body>
+<div align="center">
+
+ 					{% if act=="1" %}
+					   <h4>Test Image</h4>
+					   <img src="../static/dataset/{{fn}}" width="160" height="120">
+					   
+					    <script>
+						//Using setTimeout to execute a function after 5 seconds.
+						setTimeout(function () {
+						   //Redirect with JavaScript
+						  window.location.href="/test_pro2?act=2";
+						}, 5000);
+						</script> 
+					{% elif act=="2" %}
+					   <h4>Noice Filter</h4>
+					   <img src="../static/trained/ns_{{fn}}" width="160" height="120">
+					   
+					    <script>
+						//Using setTimeout to execute a function after 5 seconds.
+						setTimeout(function () {
+						   //Redirect with JavaScript
+						  window.location.href="/test_pro2?act=3";
+						}, 5000);
+						</script> 
+					{% elif act=="3" %}
+					   <h4>Binarization</h4>
+					   <img src="../static/trained/bb/bin_{{fn}}" width="160" height="120">
+					   
+					    <script>
+						//Using setTimeout to execute a function after 5 seconds.
+						setTimeout(function () {
+						   //Redirect with JavaScript
+						  window.location.href="/test_pro2?act=4";
+						}, 5000);
+						</script> 
+					{% elif act=="4" %}
+					   <h4>Segmentation</h4>
+					   <img src="../static/trained/sg/sg_{{fn}}" width="160" height="120">
+					   
+					    <script>
+						//Using setTimeout to execute a function after 5 seconds.
+						setTimeout(function () {
+						   //Redirect with JavaScript
+						  window.location.href="/test_pro2?act=5";
+						}, 5000);
+						</script> 
+					{% elif act=="5" %}
+					   <h4>Feature Extraction</h4>
+					   <img src="../static/trained/ff/{{fn}}" width="160" height="120">
+					   
+					    <script>
+						//Using setTimeout to execute a function after 5 seconds.
+						setTimeout(function () {
+						   //Redirect with JavaScript
+						  window.location.href="/test_pro2?act=6";
+						}, 5000);
+						</script>
+					{% elif act=="6" %}
+					   <h2>Predicted Result</h2>
+					   
+					   {% if ts=="5" %}
+					   <h3 style="color:#009933">Paddy Leaf has Healthy</h3>
+					   {% else %}
+					   <h3 style="color:#FF0000">Disease: {{classname}}</h3>
+					   <br>
+					   <img src="../static/dataset/{{fn}}" width="160" height="120">
+					  {% endif %}
+					  {% if classname=="Healthy" %}
+					  
+					  {% else %}
+					  
+					  
+					  		{% if st=="1" %}
+							<h4>Preventive Measure</h4>
+							
+							{% for rs in data %}
+                                <table width="90%" align="center" border="0" cellpadding="5" cellspacing="5">
+                                  <tr>
+                                    <td style="background-color:#CCFFCC"><strong>{{rs[1]}}</strong></td>
+                                  </tr>
+                                  
+                                  <tr>
+                                    <td align="left" valign="top"><strong>Symptoms:</strong> {{rs[2]}}</td>
+                                  </tr>
+								  <tr>
+								    <td align="left" valign="top">&nbsp;</td>
+							      </tr>
+								  <tr>
+                                    <td align="left" valign="top"><strong>Solution:</strong> {{rs[3]}}</td>
+                                  </tr>
+                                </table>
+								{% endfor %}
+								{% endif %}
+						
+						{% endif %}		
+								
+					
+					    <script>
+						//Using setTimeout to execute a function after 5 seconds.
+						//setTimeout(function () {
+						   //Redirect with JavaScript
+						//  window.location.href="/test_pro2?act=4";
+						//}, 5000);
+						</script>  
+					   {% endif %}
+
+</div>
+</body>
+</html>

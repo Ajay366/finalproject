@@ -1,0 +1,224 @@
+
+    <html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>AGRISERVE</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="../static/vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="../static/vendors/base/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- inject:css -->
+  <link rel="stylesheet" href="../static/css/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="../static/images/favicon.png" />
+   <script type="text/javascript"
+      src="http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyAzfJHU7mKkVKW9nTVPymNY-0emhlP-0DQ&v=3.21.5a&libraries=drawing&signed_in=true&libraries=places,drawing"></script>
+    <style type="text/css">
+#map {
+  height: 75%;
+  width: 75%;
+  margin: auto;
+}
+
+/* 
+ * Optional: Makes the sample page fill the window. 
+ */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+    </style>
+</head>
+
+<body>
+  <div class="container-scroller">
+    <!-- partial:../../partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="navbar-brand-wrapper d-flex justify-content-center">
+        <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
+          <a class="navbar-brand brand-logo" href="../../index.html"><img src="../static/images/logo.png" alt="logo"/></a>
+          AGRISERVE
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="mdi mdi-sort-variant"></span>
+          </button>
+        </div>  
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <ul class="navbar-nav mr-lg-4 w-100">
+          <li class="nav-item nav-search d-none d-lg-block w-100">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="search">
+                  <i class="mdi mdi-magnify"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          
+         
+          
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="mdi mdi-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">
+              <i class="mdi mdi-home menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="mdi mdi-circle-outline menu-icon"></i>
+              <span class="menu-title">Home</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/post">Send Post</a></li>
+				
+                <li class="nav-item"> <a class="nav-link" href="/user_req">My Requests</a></li>
+				<li class="nav-item"> <a class="nav-link" href="/user_book">My orders</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/logout">Logout</a></li>
+              </ul>
+            </div>
+          </li>
+          
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+            
+          <div class="row">
+            <div class="col-md-12 stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">Call request</p>
+                  <div class="table-responsive">
+                    <table id="recent-purchases-listing" class="table">
+                      <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Mibile</th>
+                            <th>Date of Booking</th>
+                            <th>Product</th>
+                            <th>Amount</th>
+							<th>Payment</th>
+                           <th>Action</th>
+						   <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+					  {% for row in book %}
+                        <tr>
+                            <td>{{ row.5 }}</td>
+                            <td>{{ row.6 }}</td>
+                            <td>{{ row.7 }}</td>
+                            
+                            <td>{{ row.2 }}</td>
+                            <td>{{ row.3 }}*{{ row.9 }}={{ row.10 }}</td>
+							<td>{{ row.11 }}</td>
+							<td><a href="" data-toggle="modal" data-target="#centermodal{{ row.0 }}">Update</a></td>
+							<td>{{ row.8 }}</td>
+                        </tr>
+						{% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+       {% for row in book %}
+        <div class="modal fade" id="centermodal{{ row.0 }}" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myCenterModalLabel" align="center">Order status</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+            </div>
+            <div class="modal-body">
+                <form class="forms-sample" name="form1" method="post">
+                    
+					<input type="hidden" name="aid" value="{{ row.0 }}">
+                        
+                    <div class="form-group">
+                        <label for="exampleInputConfirmPassword1">Order status</label>
+                        <select name="order_status" class="form-control" id="exampleInputConfirmPassword1">
+                                            <option selected="selected">-Select one-</option>
+                                            <option value="Processing">Processing</option>
+											<option value="Delivered">Delivered</option>
+											
+                                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary me-2">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+								{% endfor %}
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="../static/vendors/base/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <script src="../static/vendors/chart.js/Chart.min.js"></script>
+  <script src="../static/vendors/datatables.net/jquery.dataTables.js"></script>
+  <script src="../static/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="../static/js/off-canvas.js"></script>
+  <script src="../static/js/hoverable-collapse.js"></script>
+  <script src="../static/js/template.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="../static/js/dashboard.js"></script>
+  <script src="../static/js/data-table.js"></script>
+  <script src="../static/js/jquery.dataTables.js"></script>
+  <script src="../static/js/dataTables.bootstrap4.js"></script>
+  <!-- End custom js for this page-->
+
+  <script src="../static/js/jquery.cookie.js" type="text/javascript"></script>
+</body>
+
+</html>
+

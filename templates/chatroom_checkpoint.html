@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGRISERVE</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='chatroom.css')}}">
+</head>
+<body>
+
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">AGRISERVE</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="color:#00CC66">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/user_req">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Farmer</h4>
+                    <form method="POST" onSubmit="return validate()" class="form">
+                        <div class="form-group">
+                            <input type="text" name="display_name" id="display_name" class="form-control"
+                                   placeholder="Your name" autofocus required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Join</button>
+                        <input type="hidden" value="0" name="mute_audio" id="mute_audio_inp">
+                        <input type="hidden" value="0" name="mute_video" id="mute_video_inp">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div id="permission_alert" class="alert alert-danger" role="alert" style="display: none;">
+                <strong>Please allow camera and mic permissions!</strong>
+            </div>
+            <div class="shadow p-0">
+                <div class="vid-wrapper bg-dark">
+                    <video id="local_vid" autoplay muted style="max-height: 400px; max-width: 100%;"></video>
+                </div>
+                <div class="p-3 w-100 bg-light text-center">
+                    <button id="bttn_mute" class="btn btn-lg btn-outline-secondary rounded-circle mx-3">
+                        <span class="material-icons pt-2">mic</span>
+                    </button>
+                    <button id="bttn_vid_mute" class="btn btn-lg btn-outline-secondary rounded-circle mx-3">
+                        <span class="material-icons pt-2">videocam</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Your custom scripts -->
+<script src="{{url_for('static', filename='chatroom_checkpoint.js')}}"></script>
+
+</body>
+</html>
